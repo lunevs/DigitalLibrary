@@ -34,8 +34,25 @@ mongoose
     })
 
 
-app.get("/", () => {
-    return null;
+app.get("/book", (req, res) => {
+    Book.find({}, (result, error) => {
+        if (error) {
+            console.log(error);
+        } else {
+            res.send(result);
+        }
+    })
+});
+
+app.get("/book/:id", (req, res) => {
+    const id = req.params.id;
+    Book.findById({id}, (result, error) => {
+        if (error) {
+            console.log(error);
+        } else {
+            res.send(result);
+        }
+    })
 });
 
 app.post("/", () => {
