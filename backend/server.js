@@ -38,6 +38,21 @@ app.get("/", () => {
     return null;
 });
 
+app.post("/", () => {
+    return null;
+});
+
+app.put("/", () => {
+    return null;
+});
+
+app.patch("/", () => {
+    return null;
+});
+
+app.delete("/", () => {
+    return null;
+});
 
 app.listen(PORT, () => {
     console.log(`server running at port ${PORT}`)
