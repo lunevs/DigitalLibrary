@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const { Schema } = mongoose;
 
@@ -8,6 +9,7 @@ const { MONGODB_URI, PORT } = require('./env_config');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 mongoose.set('strictQuery', true);
 const commentSchemas = new Schema({author: String, text: String, date: String});
@@ -34,11 +36,13 @@ mongoose
     })
 
 
-app.get("/book", (req, res) => {
-    Book.find({}, (result, error) => {
+app.get("/books", (req, res) => {
+    console.log(req.rawHeaders);
+    Book.find({}, (error, result) => {
         if (error) {
-            console.log(error);
+            res.send(error);
         } else {
+            console.log(result);
             res.send(result);
         }
     })
@@ -46,17 +50,35 @@ app.get("/book", (req, res) => {
 
 app.get("/book/:id", (req, res) => {
     const id = req.params.id;
-    Book.findById({id}, (result, error) => {
+    Book.findById(id, (error, foundUser) => {
         if (error) {
-            console.log(error);
+            res.send(error);
         } else {
-            res.send(result);
+            res.send(foundUser);
         }
     })
 });
 
-app.post("/", () => {
-    return null;
+app.post("/book", (req, res) => {
+    const newBook = new Book({
+        title: req.body.title,
+        author: req.body.author,
+        commentaries: [],
+        status: req.body.status,
+        isAvailable: true,
+        screenshots: []
+    });
+    Book.findOne({title: req.body.title}, (error, foundBook) => {
+        if (foundBook) {
+            res.send("Book already exists");
+        } else if (error) {
+            res.send(error);
+        } else {
+            newBook.save(() => {
+                res.send(newBook);
+            })
+        }
+    })
 });
 
 app.put("/", () => {
