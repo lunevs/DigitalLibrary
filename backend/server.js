@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const { Schema } = mongoose;
 
@@ -8,6 +9,7 @@ const { MONGODB_URI, PORT } = require('./env_config');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 mongoose.set('strictQuery', true);
 const commentSchemas = new Schema({author: String, text: String, date: String});
@@ -35,10 +37,12 @@ mongoose
 
 
 app.get("/books", (req, res) => {
+    console.log(req.rawHeaders);
     Book.find({}, (error, result) => {
         if (error) {
             res.send(error);
         } else {
+            console.log(result);
             res.send(result);
         }
     })
