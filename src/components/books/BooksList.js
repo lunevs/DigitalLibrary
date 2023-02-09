@@ -3,12 +3,20 @@ import BookItem from "./BookItem";
 
 const BooksList = ({ books }) => {
     return (
-        <div>
-            <h1>Books:</h1>
-            <ul>
+        <table className="table w-75 mx-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Book ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
                 {books.map(el => <BookItem key={el._id} book={el} />)}
-            </ul>
-        </div>
+            </tbody>
+        </table>
     );
 }
 
