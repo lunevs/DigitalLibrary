@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-import axios from "axios";
-import qs from 'qs';
+import bookService from "../services/bookService";
 
 
 const BookAdd = () => {
@@ -10,21 +9,18 @@ const BookAdd = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        const newBook = qs.stringify({
+        const newBook = {
             title: title,
             author: author,
             status: 'new',
             commentaries: [],
             isAvailable: true,
             screenshots: []
-        });
-        axios
-            .post(
-                'http://localhost:3003/book',
-                newBook,
-                {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
-            .then((response) => {
-                console.log(JSON.stringify(response.data));
+        };
+        bookService
+            .create(newBook)
+            .then(addedBook => {
+                console.log(JSON.stringify(addedBook));
             })
             .catch(function (error) {
                 console.log(error);
