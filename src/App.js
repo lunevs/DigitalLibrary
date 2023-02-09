@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import BooksList from "./components/books/BooksList";
 import BookAdd from "./components/books/BookAdd";
-import bookService from "./components/services/bookService";
+import bookService from "./services/bookService";
 
 
 const App = () => {
