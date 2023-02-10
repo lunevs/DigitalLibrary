@@ -1,7 +1,12 @@
 import React from "react";
 import BookItem from "./BookItem";
+import {useSelector} from "react-redux";
 
-const BooksList = ({ books }) => {
+const BooksList = () => {
+
+
+    const books = useSelector(state => state.books);
+
     return (
         <div className="container">
             <table className="table">

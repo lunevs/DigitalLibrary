@@ -1,26 +1,28 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import BooksList from "./components/books/BooksList";
 import BookAdd from "./components/books/BookAdd";
-import bookService from "./services/bookService";
 import TopMenu from "./components/utils/TopMenu";
+import {useDispatch, useSelector} from "react-redux";
+import {loadBooks} from "./store/bookSlice";
+import bookService from "./services/bookService";
 
 
 const App = () => {
 
-    const [books, setBooks] = useState([]);
+    const books = useSelector(state => state.books);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         bookService
             .getAll()
-            .then(booksList => setBooks(booksList))
-            .catch(error => console.error(error))
+            .then(books => dispatch(loadBooks(books)))
     }, [])
 
   return (
     <div className="App">
         <TopMenu />
         <BookAdd />
-        <BooksList books={books} />
+        <BooksList />
     </div>
   );
 }
