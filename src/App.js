@@ -19,9 +19,6 @@ const App = () => {
   return (
     <div className="App">
         <TopMenu />
-        <header className="App-header">
-            <p>Hello</p>
-        </header>
         <BookAdd />
         <BooksList books={books} />
     </div>
