@@ -7,9 +7,18 @@ export const bookSlice = createSlice({
         loadBooks: (state, action) => {
             return action.payload;
         },
+        updateBook: (state, action) => {
+
+        },
+        deleteBook: (state, action) => {
+            return state.filter(el => el._id !== action.payload);
+        },
+        addBook: (state, action) => {
+            return [...state, action.payload];
+        }
     },
 })
 
-export const { loadBooks } = bookSlice.actions
+export const { loadBooks, addBook, deleteBook } = bookSlice.actions
 
 export default bookSlice.reducer

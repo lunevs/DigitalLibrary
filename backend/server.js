@@ -89,8 +89,15 @@ app.patch("/", () => {
     return null;
 });
 
-app.delete("/", () => {
-    return null;
+app.delete("/book/:bookId", (req, res) => {
+    const bookId = req.params.bookId;
+    Book.deleteOne({_id: bookId}, (error) => {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send("ok");
+        }
+    })
 });
 
 app.listen(PORT, () => {

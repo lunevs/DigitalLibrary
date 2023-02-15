@@ -1,0 +1,12 @@
+/*delete link in table for a book */
+.deleteLink {
+    padding-left: 10px;
+}
+.deleteLink svg {
+    font-size: 14px;
+    cursor: pointer;
+}
+.deleteLink svg:hover {
+    color: blue;
+    transition: color 0.1s ease;
+}

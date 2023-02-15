@@ -1,8 +1,12 @@
 import React, {useState} from "react";
 import bookService from "../../services/bookService";
+import {useDispatch} from "react-redux";
+import {addBook} from "../../store/bookSlice";
 
 
 const BookAdd = () => {
+
+    const dispatch = useDispatch();
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -20,7 +24,7 @@ const BookAdd = () => {
         bookService
             .create(newBook)
             .then(addedBook => {
-                console.log(JSON.stringify(addedBook));
+                dispatch(addBook(addedBook));
             })
             .catch(function (error) {
                 console.log(error);

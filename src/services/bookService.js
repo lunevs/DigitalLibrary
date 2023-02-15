@@ -27,5 +27,10 @@ const update = (id, newObject) => {
     return request.then(response => response.data);
 }
 
-const bookService = {getAll, create, update};
+const remove = (bookId) => {
+    const request = axios.delete(`${baseUrl}book/${bookId}`);
+    return request.then(response => response.data);
+}
+
+const bookService = {getAll, create, update, remove};
 export default bookService;
