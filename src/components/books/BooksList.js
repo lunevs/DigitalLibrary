@@ -9,6 +9,7 @@ const BooksList = () => {
 
     return (
         <div className="container">
+            <h1>Books List</h1>
             <table className="table">
                 <thead>
                 <tr>

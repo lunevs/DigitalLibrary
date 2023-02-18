@@ -4,6 +4,7 @@ import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch} from "react-redux";
 import {deleteBook} from "../../store/bookSlice";
 import bookService from "../../services/bookService";
+import {Link} from "react-router-dom";
 
 const BookItem = ({ book }) => {
 
@@ -16,7 +17,7 @@ const BookItem = ({ book }) => {
 
     return (
         <tr>
-            <td>{book._id}</td>
+            <td><Link to={`/book/${book._id}`}>{book._id}</Link></td>
             <td>{book.title}</td>
             <td>{book.author}</td>
             <td>{book.status}</td>

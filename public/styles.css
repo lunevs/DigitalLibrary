@@ -7,6 +7,6 @@
     cursor: pointer;
 }
 .deleteLink svg:hover {
-    color: blue;
+    color: gray;
     transition: color 0.1s ease;
 }
