@@ -1,6 +1,9 @@
 import axios from "axios";
 import qs from "qs";
+
+//const baseUrl = 'http://192.168.10.103:3003/';
 const baseUrl = 'http://localhost:3003/';
+
 
 const getAll = () => {
     const request = axios.get(`${baseUrl}books`)

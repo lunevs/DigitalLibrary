@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import store from './store/bookStore';
 import { Provider } from "react-redux";
 import App from "./App";
-
+import './styles.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

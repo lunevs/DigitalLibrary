@@ -17,19 +17,23 @@ const App = () => {
         bookService
             .getAll()
             .then(books => dispatch(loadBooks(books)))
+
+        // eslint-disable-next-line
     }, [])
 
   return (
-      <BrowserRouter>
-          <TopMenu />
+      <div className="container">
+          <BrowserRouter>
+              <TopMenu />
 
-          <Routes>
-              <Route path={`/books/`} element={<BooksList />} />
-              <Route path={`/book_add/`} element={<BookAdd />} />
-              <Route path={`/book/:id`} element={<BookDetails />} />
-          </Routes>
+              <Routes>
+                  <Route path={`/books/`} element={<BooksList />} />
+                  <Route path={`/book_add/`} element={<BookAdd />} />
+                  <Route path={`/book/:id`} element={<BookDetails />} />
+              </Routes>
 
-      </BrowserRouter>
+          </BrowserRouter>
+      </div>
   );
 }
 
